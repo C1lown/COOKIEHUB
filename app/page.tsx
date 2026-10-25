@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-const profileUrl = "https://www.roblox.com/communities/your-group-id/your-group-name#!/about";
 const loader = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/C1lown/C1own_Nametag/main/reanimlol_hub.lua"))()';
 const discordUrl = "https://discord.gg/your-invite";
 
@@ -11,7 +10,6 @@ export default function Home() {
 
   async function copyProfile() {
     try {
-      await navigator.clipboard.writeText(profileUrl);
       await navigator.clipboard.writeText(loader);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
@@ -45,15 +43,11 @@ export default function Home() {
         <h1>Make something<br /><span>worth staying up for.</span></h1>
         <p className="intro">A little corner for builders, players, and late-night ideas.</p>
         <div className="profile-card">
-          <div className="profile-icon" aria-hidden="true">N</div>
-          <div className="profile-copy"><span className="profile-label">FIND US ON ROBLOX</span><span className="profile-url">roblox.com / communities</span></div>
-          <button className="copy-button" onClick={copyProfile} aria-label="Copy Roblox community link" title="Copy link">
           <code className="loader-code">{loader}</code>
           <button className="copy-button" onClick={copyProfile} aria-label="Copy loadstring" title="Copy loadstring">
             {copied ? <span className="check">✓</span> : <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>}
           </button>
         </div>
-        <p className={`copy-note ${copied ? "visible" : ""}`} aria-live="polite">{copied ? "Link copied to clipboard" : ""}</p>
         <p className={`copy-note ${copied ? "visible" : ""}`} aria-live="polite">{copied ? "Copied to clipboard" : ""}</p>
       </section>
 
